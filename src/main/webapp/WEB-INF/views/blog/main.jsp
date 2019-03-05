@@ -86,11 +86,11 @@
 					<div class="">
 						<div class="item">
 							<div >
-								<img src="/resources/images/our-team/img-1.jpg" alt="" style="width:40%; border-radius: 50% ">
+								<img src="${map.IMG }" alt="" style="width:40%; border-radius: 50% ">
 							</div>
 						</div>
 						<div class="info">
-							<h4 class="name">Matthew Dix</h4>
+							<h4 class="name">${map.NAME }</h4>
 							<span class="regency"><a href="j_spring_security_logout">LOG OUT</a></span>
 						</div>
 					</div>
@@ -108,25 +108,32 @@
 			</h2>
 			<div class="sectionContent">
 				<div class="row">
-					<div class="col-md-4 col-sm-4">
-						<article>
-							<div class="articleThumb">
-								<a href="#"><img src="/resources/images/our-blog/img-1.jpg" alt=""></a>
-								<div class="date">
-									<span class="number">15</span>
-									<span class="text">Jan</span>
+				
+					<c:forEach var="list" items="${list }">
+						<div class="col-md-4 col-sm-4">
+							<article>
+								<div class="articleThumb">
+									<a href="#"><img src="${list.thumbnail }" alt=""></a>
+									<div class="date">
+										<span class="number">15</span>
+										<span class="text">Jan</span>
+									</div>
 								</div>
-							</div>
-							<h3 class="articleTitle"><a href="">Lorem ipsum dolor sit amet</a></h3>
-							<p class="articleDesc">
-								Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							</p>
-							<div class="articleMeta">
-								<a href="#"><i class="mdi mdi-eye nino-icon"></i> 543</a>
-								<a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 15</a>
-							</div>
-						</article>
-					</div>
+								<h3 class="articleTitle"><a href="">${list.title }</a></h3>
+								<p class="articleDesc">
+									${list.content }
+								</p>
+								<div class="articleMeta">
+									<a href="#"><i class="mdi mdi-eye nino-icon"></i> ${list.count }</a>
+									<a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 15</a>
+								</div>
+							</article>
+						</div>
+					</c:forEach>
+					
+					
+					
+					<!--  
 					<div class="col-md-4 col-sm-4">
 						<article>
 							<div class="articleThumb">
@@ -165,6 +172,7 @@
 							</div>
 						</article>
 					</div>
+					-->
 				</div>
 			</div>
     	</div>

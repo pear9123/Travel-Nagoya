@@ -3,8 +3,6 @@ package com.user.member.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.user.main.controller.HomeController;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -12,7 +10,7 @@ import org.springframework.security.web.servletapi.SecurityContextHolderAwareReq
 @Controller
 public class MemberController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	/* LOGIN FORM VIEW */
 	@RequestMapping("/LoginForm.do")
@@ -47,7 +45,7 @@ public class MemberController {
 	@RequestMapping("/LogoutForm.do")
 	public String LogoutForm() {
 		
-		return "member/LogoutForm";
+		return "home";
 	}
 	
 	

@@ -3,9 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -23,6 +29,37 @@
 	
 	<context:component-scan base-package="com.user.*.*" />
 	
+	<!-- JDBC 액션을 위한 Connection 객체 등록 -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://IP:PORT/DBNAME?useSSL=false&amp;characterEncoding=utf-8" />
+		<beans:property name="username" value="ID" />
+		<beans:property name="password" value="PASSWORD" />
+	</beans:bean>
+
 	
+	<!-- MyBatis 환경 설정 추가 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- setter에 의한 의존주입 -->
+		<!-- 데이터소스 정보 제공 -->
+		<beans:property name="dataSource" ref="dataSource" />
+		<!-- Mapper 파일(SQL Statement 정보가 들어있는 파일) 정보 제공 -->
+		<!-- value="" 속성에 Mapper 파일 정보 지정 -->
+		<beans:property name="mapperLocations" value="classpath:com/mybatis/mapper/*.xml" />
+	</beans:bean>
+	<!-- SqlSessionTemplate 객체가 Spring JdbcTemplate 객체를 대체한다 -->
+	<!-- SqlSession은 데이터베이스에 대해 SQL명령어를 실행하기 위해 필요한 모든 메소드를 가지고 있다. 그래서 SqlSession 인스턴스를 통해 직접 SQL 구문을 실행할 수 있다. --> 
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 생성자에 의한 의존주입 -->
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
 	
+	<!-- file Upload -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <beans:property name="maxUploadSize" value="8708743" /> <!-- 8MB -->
+        <!-- max size of file in memory (in bytes) -->
+        <beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+    </beans:bean>
+
 </beans:beans>

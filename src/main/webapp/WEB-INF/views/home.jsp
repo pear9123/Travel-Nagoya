@@ -12,7 +12,8 @@
 	Hello world!  
 </h1>
 
-<div><a href="/blog.do">블로그</a></div>
+<div><a href="/BlogMain.do">블로그</a></div>
 <div><a href="/travel.do">여행지도</a></div>
+<div><a href="/LoginForm.do">로그인</a></div>
 </body>
 </html>
