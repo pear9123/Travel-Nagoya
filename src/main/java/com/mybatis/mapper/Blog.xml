@@ -13,7 +13,7 @@
 	
 	<select id="selectbloglist" resultType="HashMap" >
 		SELECT
-			*
+			*,date_format(nowdate,"%M") as month,date_format(nowdate,"%d") as day
 		FROM
 			blogcontent
 		WHERE
@@ -21,5 +21,31 @@
 		group by nowdate desc
 	</select>
 	
+	<select id="selectblogimages" resultType="HashMap" parameterType="String">
+		SELECT
+			*
+		FROM
+			blogimage
+		WHERE
+			pid = #{pid}
+	</select>
+	
+	<select id="selectbloginfo" resultType="HashMap" parameterType="String">
+		SELECT
+			*
+		FROM
+			blogcontent
+		WHERE
+			pid = #{pid}
+	</select>
+	
+	<update id="updatecount" parameterType="String">
+		UPDATE 
+			blogcontent
+		SET
+			count = count + 1
+		WHERE
+			pid = #{pid}
+	</update>
 	
 </mapper>

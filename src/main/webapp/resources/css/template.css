@@ -570,7 +570,7 @@ section {
 /* =============== SECTION TESTIMONIAL =============== */
 .nino-testimonial {
 	background: #f8f8f8;
-	padding: 60px 0;
+	padding: 0px 0;
 }
 .nino-testimonial .unslider-arrow {
 	font-size: 40px;
@@ -724,7 +724,7 @@ section {
 }
 /* =============== SECTION HAPPY CLIENT =============== */
 #nino-happyClient {
-	background: url(../images/happy-client/bg-happy-client.jpg) no-repeat center center / cover;
+/* 	background: url(../images/happy-client/bg-happy-client.jpg) no-repeat center center / cover; */
 }
 #nino-happyClient .item {
 	margin-bottom: 30px;
@@ -1044,7 +1044,7 @@ div.pp_default .pp_social {
 	}	
 	/* =============== SECTION TESTIMONIAL =============== */
 	.nino-testimonial {
-		padding: 30px 0;
+		padding: 15px 0;
 	}
 	.nino-testimonialSlider .quote {
 		font-size: 13px;

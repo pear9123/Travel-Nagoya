@@ -23,5 +23,17 @@ public class BlogServiceImpl implements BlogService {
 	public List<Map<String, Object>> selectbloglist() throws Exception {
 		return BlogDAO.selectbloglist();
 	}
-
+	
+	public List<Map<String, Object>> selectblogimages(String pid) throws Exception {
+		return BlogDAO.selectblogimages(pid);
+	}
+	
+	public Map<String, Object> selectbloginfo(String pid) throws Exception {
+		return BlogDAO.selectbloginfo(pid);
+	}
+	
+	public void updatecount(String pid) throws Exception{
+		BlogDAO.updatecount(pid);
+	}
+	
 }

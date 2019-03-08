@@ -39,11 +39,11 @@
 }
 .unslider-arrow {
     position: absolute;
-    left: 20px;
+    left: 0px;
     z-index: 2;
     cursor: pointer
 }
 .unslider-arrow.next {
     left: auto;
-    right: 20px
+    right: 0px
 }

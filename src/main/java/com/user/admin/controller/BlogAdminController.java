@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.user.admin.service.BlogAdminService;
-import com.user.main.controller.HomeController;
 
 @Controller
 public class BlogAdminController {
@@ -38,21 +39,24 @@ public class BlogAdminController {
 	}
 	
 	@RequestMapping("/AdminImgUploadProc.do")
-	public String AdminImgUploadProc(MultipartHttpServletRequest mtfRequest) throws Exception {
+	public String AdminImgUploadProc(MultipartHttpServletRequest mtfRequest, HttpSession session) throws Exception {
 		List<MultipartFile> fileList = mtfRequest.getFiles("file");
         String title = mtfRequest.getParameter("title");
         String contents = mtfRequest.getParameter("contents");
+        long CurrentTime_temp = System.currentTimeMillis(); // Name 동기화
+        String CurrentTime = String.valueOf(CurrentTime_temp);
         
         // CONFIG PATH
         String path = BLOGADMINSERVICE.configimgpath();
         
         // BLOG CONTENT INSERT
         Map<String, String> ContentMap = new HashMap();
-        String thumbnail = path +""+System.currentTimeMillis()+""+ fileList.get(0).getOriginalFilename();
+        String thumbnail = path +""+CurrentTime+""+ fileList.get(0).getOriginalFilename();
         ContentMap.put("title", title);
         ContentMap.put("contents", contents);
         ContentMap.put("thumbnail", thumbnail);
         BLOGADMINSERVICE.contentinsert(ContentMap);
+        
         
         logger.debug("---------------file upload start---------------");
         logger.debug("title : "+ContentMap.get("title"));
@@ -63,9 +67,13 @@ public class BlogAdminController {
         	Map<String, String> map = new HashMap();
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
             String fileSize = String.valueOf(mf.getSize()); // 파일 사이즈
+           
             
-            String dbsavefile = System.currentTimeMillis() + originFileName;
-            String safeFile = path + System.currentTimeMillis() + originFileName;
+            String dbsavefile = CurrentTime +""+ originFileName;
+//            String safeFile = path + System.currentTimeMillis() + originFileName;
+//            String safeFile1 = session.getServletContext().getRealPath("/");
+            String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+            System.out.println("safeFile : "+safeFile);
             
             map.put("path",path);
             map.put("filename", dbsavefile);
