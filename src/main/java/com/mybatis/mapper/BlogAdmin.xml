@@ -23,4 +23,12 @@
 			((select max(a.pid+1) from blogcontent a), #{title}, #{contents}, #{thumbnail}, now());
 	</insert>
 	
+	<insert id="insertnotice" parameterType="HashMap">
+		INSERT INTO blognotice
+			(notice, writer,date)
+		VALUES
+			(#{notice},#{writer},now())
+	
+	</insert>
+	
 </mapper>

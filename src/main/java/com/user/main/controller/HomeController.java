@@ -24,7 +24,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! Chungbae`s Web");
 		
-		return "home";
+		return "redirect:/BlogMain.do";
 	}
 	
 }

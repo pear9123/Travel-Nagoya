@@ -16,8 +16,8 @@
 				<div class="row nino-hoverEffect">
 					<div class="">
 						<div class="item">
-							<div >
-								<img src="${map.IMG }" alt="" style="width:23%; border-radius: 50% ">
+							<div>
+								<a data-toggle="modal" data-target="#MainImageModal"><img src="${map.IMG }" alt="" style="width:23%; border-radius: 50% "></a>
 							</div>
 						</div>
 						<div class="info">
@@ -36,39 +36,20 @@
     	<div class="container">
     		<div class="nino-testimonialSlider">
 				<ul>
-					<li>
-						<div layout="row">
-							<div class="nino-symbol fsr">
-								<i class="mdi mdi-comment-multiple-outline nino-icon"></i>
+					<c:forEach var="notice" items="${notice }">
+						<li>
+							<div layout="row">
+								<div class="nino-symbol fsr">
+									<i class="mdi mdi-comment-multiple-outline nino-icon"></i>
+								</div>
+								<div>
+									<span class="name">NOTICE</span>
+									<p>${notice.notice }</p>
+								</div>
 							</div>
-							<div>
-								<span class="name">NOTICE</span>
-								<p>공지사항 샘플 1번 슬라이드 입니다.</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div layout="row">
-							<div class="nino-symbol fsr">
-								<i class="mdi mdi-wechat nino-icon"></i>	
-							</div>
-							<div>
-								<span class="name">NOTICE</span>
-								<p>공지사항 샘플 2번 슬라이드 입니다.</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div layout="row">
-							<div class="nino-symbol fsr">
-								<i class="mdi mdi-message-text-outline nino-icon"></i>
-							</div>
-							<div>
-								<span class="name">NOTICE</span>
-								<p>공지사항 샘플 3번 슬라이드 입니다.</p>
-							</div>
-						</div>
-					</li>
+						</li>
+					</c:forEach>
+					
 				</ul>
 			</div>
     	</div>
@@ -100,54 +81,12 @@
 								</p>
 								<div class="articleMeta">
 									<a href="/BlogDetail.do?pid=${list.pid }"><i class="mdi mdi-eye nino-icon"></i> ${list.count }</a>
-									<a href="/BlogDetail.do?pid=${list.pid }"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 15</a>
+									<a href="/BlogReply.do?uid=${list.pid }"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> ${list.replycount }</a>
 								</div>
 							</article>
 						</div>
 					</c:forEach>
 					
-					
-					
-					<!--  
-					<div class="col-md-4 col-sm-4">
-						<article>
-							<div class="articleThumb">
-								<a href="#"><img src="/resources/images/our-blog/img-2.jpg" alt=""></a>
-								<div class="date">
-									<span class="number">14</span>
-									<span class="text">Jan</span>
-								</div>
-							</div>
-							<h3 class="articleTitle"><a href="">sed do eiusmod tempor</a></h3>
-							<p class="articleDesc">
-								Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							</p>
-							<div class="articleMeta">
-								<a href="#"><i class="mdi mdi-eye nino-icon"></i> 995</a>
-								<a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 42</a>
-							</div>
-						</article>
-					</div>
-					<div class="col-md-4 col-sm-4">
-						<article>
-							<div class="articleThumb">
-								<a href="#"><img src="/resources/images/our-blog/img-3.jpg" alt=""></a>
-								<div class="date">
-									<span class="number">12</span>
-									<span class="text">Jan</span>
-								</div>
-							</div>
-							<h3 class="articleTitle"><a href="">incididunt ut labore et dolore</a></h3>
-							<p class="articleDesc">
-								Elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							</p>
-							<div class="articleMeta">
-								<a href="#"><i class="mdi mdi-eye nino-icon"></i> 1264</a>
-								<a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 69</a>
-							</div>
-						</article>
-					</div>
-					-->
 				</div>
 			</div>
     	</div>

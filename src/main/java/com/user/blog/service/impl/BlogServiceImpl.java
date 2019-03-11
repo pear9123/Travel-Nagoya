@@ -32,8 +32,24 @@ public class BlogServiceImpl implements BlogService {
 		return BlogDAO.selectbloginfo(pid);
 	}
 	
-	public void updatecount(String pid) throws Exception{
+	public void updatecount(String pid) throws Exception {
 		BlogDAO.updatecount(pid);
+	}
+	
+	public List<Map<String, Object>> selectnotice() throws Exception {
+		return BlogDAO.selectnotice();
+	}
+	
+	public void insertreply(Map<String, Object> map) throws Exception {
+		BlogDAO.insertreply(map);
+	}
+	
+	public List<Map<String, Object>> selectreply(String uid) throws Exception {
+		return BlogDAO.selectreply(uid);
+	}
+	
+	public String selectreplycount(String uid) throws Exception {
+		return BlogDAO.selectreplycount(uid);
 	}
 	
 }

@@ -34,4 +34,21 @@ public class BlogDAO extends AbstractDAO{
 		update("Blog.updatecount", pid);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectnotice() throws Exception {
+		return selectList("Blog.selectnotice");
+	}
+	
+	public void insertreply(Map<String, Object> map) throws Exception {
+		insert("Blog.insertreply", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectreply(String uid) throws Exception {
+		return selectList("Blog.selectreply", uid);
+	}
+	
+	public String selectreplycount(String uid) throws Exception {
+		return (String) selectOne("Blog.selectreplycount", uid);
+	}
 }

@@ -28,4 +28,9 @@ public class BlogAdminServiceImpl implements BlogAdminService{
 		BlogAdminDAO.contentinsert(ContentMap);
 	}
 	
+	// BlogNotice - INSERT
+	public void insertnotice(Map<String, Object> map) throws Exception{
+		BlogAdminDAO.insertnotice(map);
+	}
+	
 }

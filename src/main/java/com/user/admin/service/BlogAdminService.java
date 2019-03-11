@@ -13,4 +13,6 @@ public interface BlogAdminService {
 	// BlogContent - INSERT
 	public void contentinsert(Map<String, String> ContentMap) throws Exception;
 	
+	// BlogNotice - INSERT
+	public void insertnotice(Map<String, Object> map) throws Exception;
 }

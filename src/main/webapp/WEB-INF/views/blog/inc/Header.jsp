@@ -31,6 +31,24 @@
 	function logout(){
 		document.location.href = "j_spring_security_logout";
 	}
+	
+	function replyform() {
+		var param = $("form[name=form]").serialize();
+
+		$.ajax({
+	          	url : "/BlogReplyProc.do", // 요기에
+	            type : 'POST', 
+	            data : param, 
+	            success : function(data) {
+//	                 var jsonObj = JSON.parse(data);
+					console.log("성공");
+	            }, // success 
+	    
+	            error : function(xhr, status) {
+// 	                alert(xhr + " : " + status);
+	            }
+	        }); 
+	}
 </script>
 
 <body data-target="#nino-navbar" data-spy="scroll">

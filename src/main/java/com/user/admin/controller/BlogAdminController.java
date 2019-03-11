@@ -2,10 +2,12 @@ package com.user.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -98,4 +100,25 @@ public class BlogAdminController {
 
         return "redirect:/AdminImgUpload.do";
     }
+	
+	// AdminNotice view 
+	@RequestMapping("/AdminNotice.do")
+	public String AdminNotice() {
+		return "admin/AdminNotice";
+	}
+	
+	// AdminNotice view Proc
+	@RequestMapping("/AdminNoticeProc.do")
+	public String AdminNoticeProc(HttpServletRequest request, Principal principal) throws Exception {
+		String notice = request.getParameter("notice");
+		String writer = principal.getName();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("notice", notice);
+		map.put("writer", writer);
+		
+		BLOGADMINSERVICE.insertnotice(map);
+		
+		return "admin/AdminBlog";
+	}
 }

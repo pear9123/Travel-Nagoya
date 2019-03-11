@@ -20,4 +20,16 @@ public interface BlogService {
 	// UpdateCount - UPDATE
 	public void updatecount(String pid) throws Exception;
 	
+	// BlogNotice - SELECT
+	List<Map<String, Object>> selectnotice() throws Exception;
+	
+	// BlogDetailReply - INSERT
+	public void insertreply(Map<String, Object> map) throws Exception;
+	
+	// BlogReply - SELECT
+	List<Map<String, Object>> selectreply(String uid) throws Exception;
+	
+	// BlogReplyCount - SELECT
+	String selectreplycount(String uid) throws Exception;
+	
 }

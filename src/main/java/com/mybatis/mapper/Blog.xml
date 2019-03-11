@@ -13,7 +13,8 @@
 	
 	<select id="selectbloglist" resultType="HashMap" >
 		SELECT
-			*,date_format(nowdate,"%M") as month,date_format(nowdate,"%d") as day
+			*,date_format(nowdate,"%M") as month,date_format(nowdate,"%d") as day,
+			(select count(*) from blogreply c where c.uid = blogcontent.pid) as replycount
 		FROM
 			blogcontent
 		WHERE
@@ -47,5 +48,44 @@
 		WHERE
 			pid = #{pid}
 	</update>
+	
+	<select id="selectnotice" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			blognotice
+		ORDER BY date desc			
+	</select>
+	
+	<insert id="insertreply" parameterType="String">
+		INSERT INTO
+			blogreply
+				(uid,reply,name,date)
+		VALUES
+				(#{uid},#{reply},#{name},now())
+	</insert>
+	
+	<select id="selectreply" parameterType="HashMap" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			blogreply
+		JOIN
+			user
+		ON
+			blogreply.name = user.EMAIL
+		WHERE
+			blogreply.uid = #{uid}
+		ORDER BY blogreply.date DESC
+	</select>
+	
+	<select id="selectreplycount" parameterType="String" resultType="String">
+		SELECT
+			count(*)
+		FROM
+			blogreply
+		WHERE
+			uid = #{uid}
+	</select>
 	
 </mapper>

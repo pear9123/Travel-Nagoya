@@ -9,18 +9,19 @@ import com.user.common.AbstractDAO;
 @Repository("BlogAdminDAO")
 public class BlogAdminDAO extends AbstractDAO{
 	
-	@SuppressWarnings("unchecked")
 	public String configimgpath() throws Exception{
 		return (String)selectOne("BlogAdmin.selectconfigimgpath");
 	}
 
-	@SuppressWarnings("unchecked")
 	public void InsertImage(Map<String, String> map) throws Exception {
 		insert("BlogAdmin.InsertImage", map);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void contentinsert(Map<String, String> ContentMap) throws Exception {
 		insert("BlogAdmin.contentinsert", ContentMap);
+	}
+	
+	public void insertnotice(Map<String, Object> map) throws Exception{
+		insert("BlogAdmin.insertnotice", map);
 	}
 }
