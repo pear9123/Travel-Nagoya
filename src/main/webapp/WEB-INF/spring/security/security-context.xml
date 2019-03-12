@@ -19,6 +19,8 @@
 		<intercept-url pattern="/Admin*.do" access="ROLE_ADMIN" />
 		<intercept-url pattern="/Blog*.do" access="ROLE_USER, ROLE_ADMIN" />
 		<intercept-url pattern="/Travel*.do" access="ROLE_USER, ROLE_ADMIN" />
+		<intercept-url pattern="/Price*.do" access="ROLE_USER, ROLE_ADMIN" />
+		<intercept-url pattern="/Moim*.do" access="ROLE_USER, ROLE_ADMIN" />
 	</http>
 	
 	<authentication-manager>

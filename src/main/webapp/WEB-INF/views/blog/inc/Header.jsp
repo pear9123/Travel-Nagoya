@@ -25,6 +25,26 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/unslider.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/template.css" />
 	
+	<!-- javascript -->
+	<script type="text/javascript" src="/resources/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="/resources/js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.hoverdir.js"></script>
+	<script type="text/javascript" src="/resources/js/modernizr.custom.97074.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="/resources/js/unslider-min.js"></script>
+	<script type="text/javascript" src="/resources/js/template.js"></script>
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!-- css3-mediaqueries.js for IE less than 9 -->
+	<!--[if lt IE 9]>
+	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+	
 </head>
 
 <script type="text/javascript">
@@ -48,6 +68,16 @@
 // 	                alert(xhr + " : " + status);
 	            }
 	        }); 
+	}
+	
+	function url(obj){
+		console.log(obj);
+		if(obj == 'pricecreate'){
+			document.location.href = "/PriceCreateProc.do";
+		} else if(obj == 'price'){
+			document.location.href = "/Price.do";
+		}
+		
 	}
 </script>
 
@@ -81,6 +111,7 @@
 								<li><a href="#nino-ourTeam">Our Team</a></li>
 <!-- 								<li><a href="#nino-portfolio">Work</a></li> -->
 								<li><a href="#nino-latestBlog">Blog</a></li>
+								<li><a href="#" onclick="url('price');">Price</a></li>
 								<li><a href="#" onclick="logout();">Logout</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->

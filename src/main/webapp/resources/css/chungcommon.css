@@ -1,0 +1,93 @@
+/**
+* @author    Ninodezign.com http://www.ninodezign.com
+* @copyright Copyright (C) 2016 Ninodezign.com. All rights reserved.
+* @license   Ninodezign.com Proprietary License
+*/
+/* ============================== DEFAULT HTML ============================== */
+@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+@import 'https://fonts.googleapis.com/css?family=Kaushan+Script';
+
+	#fixedfooter {
+		position:fixed;
+		left:0px;
+		bottom:0px;
+		width: 100%;
+		text-align: center;
+		z-index: 999;
+	}
+	.inner1 {
+		background:#EAEAEA;
+		color: black;
+		width: 100%;
+		padding: 15px;
+		display: inline-block;
+	}
+	.rest {
+		background:#EAEAEA;
+		color: black;
+		width: 100%;
+		padding: 15px;
+		display: inline-block;
+	}
+	.trans {
+		background:#EAEAEA;
+		color: black;
+		width: 100%;
+		padding: 15px;
+		display: inline-block;
+	}
+	.etc {
+		background:#EAEAEA;
+		color: black;
+		width: 100%;
+		padding: 15px;
+		display: inline-block;
+	}
+	._1OAG72_XBn {
+    display: inline-block;
+    position: relative;
+    height: 34px;
+    border: solid 1px #dde0e3;
+    }
+    ._1OAG72_XBn ._2EwDwou2_k {
+    position: relative;
+    width: 34px;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-color: #f1f2f4;
+    }
+    ._1OAG72_XBn ._2OQlsm6qE- {
+    width: 44px;
+    height: 100%;
+    border: 1px solid #eff1f5;
+    border-width: 0 1px;
+    vertical-align: top;
+    font-family: Tahoma, 나눔고딕, 'Nanum Gothic', 나눔스퀘어, 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '\B9D1\C740 \ACE0\B515', 'Dotum', '\B3CB\C6C0', 'sans-serif';
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 34px;
+    text-align: center;
+    }
+    ._1OAG72_XBn ._2EwDwou2_k {
+    position: relative;
+    width: 34px;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-color: #f1f2f4;
+    }
+    
+   
+	.createfixer {
+		background:#45a1ff;
+		color: black;
+		width: 30%;
+		padding: 15px;
+		display: inline-block;
+		font-family:'Montserrat', sans-serif;
+	}

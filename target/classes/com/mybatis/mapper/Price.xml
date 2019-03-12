@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Price">
+	
+	<insert id="insertpricemain" parameterType="HashMap">
+		INSERT INTO pricemain
+			(state, comment, date)
+			VALUES
+			(#{state}, #{comment}, now())
+	</insert>	
+	
+	<select id="selectpricemain" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			pricemain
+	</select>
+	
+	<select id="selectpricecontent" parameterType="String" resultType="HashMap">
+		SELECT
+			*,(select a.IMG from user a where a.NAME = p.name) IMG,
+			  (select substring(date,1,11) from pricemain m where m.pid = p.uid) DAY
+		FROM
+			pricecontent p
+		WHERE
+			p.uid = #{uid}
+		ORDER BY p.date desc
+	</select>
+	
+	<insert id="insertpricecontent_rest" parameterType="HashMap">
+		INSERT INTO pricecontent
+			(uid, name, state, price, flag_chk, checked, date)
+			VALUES
+			(#{uid}, (select u.NAME name from user u where u.EMAIL = #{name}), #{rest_title}, #{rest_price}, #{flag}, #{rest}, now())
+	</insert>
+</mapper>

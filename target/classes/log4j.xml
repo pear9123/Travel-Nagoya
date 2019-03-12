@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.user.blog.controller">
-		<level value="all" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

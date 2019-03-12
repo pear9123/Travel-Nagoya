@@ -106,5 +106,7 @@
 	    	</div>
     	</div>
     </section><!--/#nino-map-->
+    
 	
 <jsp:include page="/WEB-INF/views/blog/inc/Footer.jsp"/>
+

@@ -40,26 +40,6 @@
     ================================================== -->
 	<a href="#" id="nino-scrollToTop">Go to Top</a>
 	
-	<!-- javascript -->
-	<script type="text/javascript" src="/resources/js/jquery.min.js"></script>	
-	<script type="text/javascript" src="/resources/js/isotope.pkgd.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.prettyPhoto.js"></script>
-	<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.hoverdir.js"></script>
-	<script type="text/javascript" src="/resources/js/modernizr.custom.97074.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript" src="/resources/js/unslider-min.js"></script>
-	<script type="text/javascript" src="/resources/js/template.js"></script>
-
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<!-- css3-mediaqueries.js for IE less than 9 -->
-	<!--[if lt IE 9]>
-	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-	<![endif]-->
-	
 	<!-- Modal -->
 	<div class="modal fade" id="MainImageModal" tabindex="-1" role="dialog" aria-labelledby="MainImageModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
