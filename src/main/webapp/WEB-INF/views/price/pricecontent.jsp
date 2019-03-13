@@ -18,6 +18,19 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/chungcommon.css" />
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
+		var sum = $("#sum_value").val();
+		$("#sum_result_pay").html(sum);
+		
+		var tpc = $("#trans_person_cnt").text();
+		var tpp = $("#trans_person_price").text();
+		tpc = tpc * 1;
+		tpp = tpp * 1;
+		console.log(tpc);
+		console.log(tpp);
+		var tsp = tpc * tpp;
+		$("#trans_sum_pay").html(tsp);		
+		
 		$("#chk0").click(function(){
 	    	$(".rest").show();
 	    	$(".trans").hide();
@@ -76,17 +89,31 @@
 			console.log("결과 값 : "+result_pri);
 			$('#result_pri').html(result_pri);
 		});
+		
+// 		$("#modifymodal").click(function(){
+// 			var num = $(this).attr('value');
+// 			console.log(num);
+// 		});
+		
+		
 	});
+	
+	function modalshow(obj){
+		console.log(obj);
+		$('#recipient-name').val(obj);
+	}
 	</script>
 <!-- Happy Client
     ================================================== -->
     <section id="nino-happyClient">
     	<div class="container">
-    		<h2 class="nino-sectionHeading">
-				${day }
+    		<h2 class="nino-sectionHeading" style="padding-bottom: 10px; margin-bottom: 0px;">
+    			${day } <br>
 			</h2>
+			<h5 style="text-align: right;">총사용금액 : <span id="sum_result_pay"></span>원</h5>
 			<div class="sectionContent">
 				<div class="row">
+					<c:set var="sum" value="0"/>
 					<c:forEach var="list" items="${Contentlist }">
 						<div class="col-md-12">
 							<div layout="row" class="item">
@@ -94,7 +121,15 @@
 									<img class="img-circle" src="${list.IMG }" alt="">
 								</div>
 								<div class="info">
-									<h4 class="name">${list.price } 원 - 
+									<h4 class="name">
+										<c:choose>
+											<c:when test="${list.flag_chk == 'trans' }">
+												<span id="trans_sum_pay"></span> 원 -
+											</c:when>
+											<c:otherwise>
+												${list.price } 원 - 
+											</c:otherwise>
+										</c:choose>	
 									<c:choose>
 										<c:when test="${list.flag_chk == 'rest' }">
 											식비(<c:choose><c:when test="${list.checked == '0' }">아침</c:when> 
@@ -102,46 +137,51 @@
 															<c:when test="${list.checked == '2' }">저녁</c:when> 
 												</c:choose>)
 										</c:when>
-									</c:choose> </h4>
-									<span>${list.state } // ${list.date }</span>
+										<c:when test="${list.flag_chk == 'trans' }">
+											교통비(<span id="trans_person_cnt">${list.person_cnt }</span>명 - 장당 <span id="trans_person_price">${list.person_price }</span>원)
+										</c:when>
+										<c:when test="${list.flag_chk == 'etc' }">
+											<c:choose>
+												<c:when test="${list.checked == '0' }">주류</c:when>
+												<c:when test="${list.checked == '1' }">야식</c:when>
+												<c:when test="${list.checked == '2' }">기타</c:when>
+											</c:choose>
+										</c:when>
+									</c:choose> 
+									</h4>
+									<span>
+									<c:choose>
+										<c:when test="${list.flag_chk == 'rest' }">
+											${list.state } / ${list.date } 
+										</c:when>
+										<c:when test="${list.flag_chk == 'trans' }">
+											<c:choose>
+											<c:when test="${list.checked == '0' }">버스</c:when>
+											<c:when test="${list.checked == '1' }">지하철</c:when>
+											<c:when test="${list.checked == '2' }">기타</c:when>
+										 </c:choose> / ${list.date }
+										</c:when>
+										<c:when test="${list.flag_chk == 'etc' }">
+											${list.state } / ${list.date } 
+										</c:when>
+									</c:choose>
+									</span>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="modalshow('${list.pid}')" id="modifymodal">dd</button>
+<!-- 									<button style="border: none;background-color: white;"><img alt="" src="/resources/images/price_modify.png" style="width: 20px;"></button> -->
 								</div>
 							</div>
 						</div>
+						<c:set var="sum" value="${sum + list.price }"/>
 					</c:forEach>
-				
-<!-- 					<div class="col-md-12"> -->
-<!-- 						<div layout="row" class="item"> -->
-<!-- 							<div class="nino-avatar fsr"> -->
-<!-- 								<img class="img-circle" src="images/happy-client/img-1.jpg" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div class="info"> -->
-<!-- 								<h4 class="name">Matthew Dix</h4> -->
-<!-- 								<span>Graphic Design</span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-md-12"> -->
-<!-- 						<div layout="row" class="item"> -->
-<!-- 							<div class="nino-avatar fsr"> -->
-<!-- 								<img class="img-circle" src="images/happy-client/img-2.jpg" alt=""> -->
-<!-- 							</div> -->
-<!-- 							<div class="info"> -->
-<!-- 								<h4 class="name">Nick Karvounis</h4> -->
-<!-- 								<span>Graphic Design</span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+					<input type="hidden" id="sum_value" value="${sum }">
 			</div>
 		<div id="fixedfooter">
-    
 			<div class="inner1">
 				<input type="radio" id="chk0" name="chk" value="0" checked="checked"><label for="chk0">식비&nbsp;&nbsp;</label>
 				<input type="radio" id="chk1" name="chk" value="1" ><label for="chk1">교통&nbsp;&nbsp;</label>
 				<input type="radio" id="chk2" name="chk" value="2" ><label for="chk2">기타&nbsp;&nbsp;</label>
 				<label style="float: right;">결재금액 : <span id="result_pri"></span></label>
 			</div>
-			
 			<div class="rest" style="display:none;">		
 				<form action="/PriceContentProc.do" method="post" id="formrest">
 					<input type="hidden" name="flag" value="rest">
@@ -170,7 +210,7 @@
 	<!-- 				<a><img alt="" src="/resources/images/minus.png"></a>0<a><img alt="" src="/resources/images/plus.png"></a> -->
 					<div class="_1OAG72_XBn">
 						<button type="button" class="_2EwDwou2_k _1wF7pQPqYn" id="minus">-</button>
-							<input type="text" class="_2OQlsm6qE-" value="0" id="number">
+							<input type="text" class="_2OQlsm6qE-" value="0" id="number" name="number">
 						<button type="button" class="_2EwDwou2_k _3EUt9iTNwM" id="plus">+</button>
 					</div>
 					<input type="submit" value="입력">
@@ -197,7 +237,41 @@
     	</div>
     </section><!--/#nino-happyClient-->
     
-   
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">금액</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">장소</label>
+            <input type="text" class="form-control" id="state">
+          </div>
+          <div class="form-group">
+          	<select>
+          		<option>아침</option>
+          		<option>점심</option>
+          		<option>저녁</option>
+          	</select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     
    

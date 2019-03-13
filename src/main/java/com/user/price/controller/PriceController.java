@@ -62,9 +62,11 @@ public class PriceController {
 			System.out.println("=============================================");
 		}
 		List<Map<String, Object>> list = PRICESERVICE.selectpricecontent(uid);
-		String day = (String) list.get(0).get("DAY");
+		// DAY
+		String day_t = PRICESERVICE.selectpriceday(uid);
+		
 		model.addAttribute("Contentlist", list);
-		model.addAttribute("day", day);
+		model.addAttribute("day", day_t);
 		model.addAttribute("uid", uid);
 		return "price/pricecontent";
 	}
@@ -77,9 +79,7 @@ public class PriceController {
 		String username = principal.getName();
 		System.out.println("USERNAME : "+username);
 		map.put("name", username);
-		if(flag.equals("rest")) {
-			PRICESERVICE.insertpricecontent_rest(map);
-		}
+		PRICESERVICE.insertpricecontent_rest(map);
 		
 		redirect.addFlashAttribute("uid", map.get("uid"));
 		return "redirect:/PriceContent.do";

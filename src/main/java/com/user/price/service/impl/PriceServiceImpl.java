@@ -30,4 +30,8 @@ public class PriceServiceImpl implements PriceService {
 	public void insertpricecontent_rest(Map<String, Object> map) throws Exception {
 		priceDAO.insertpricecontent_rest(map);
 	}
+	
+	public String selectpriceday(String uid) throws Exception {
+		return priceDAO.selectpriceday(uid);
+	}
 }

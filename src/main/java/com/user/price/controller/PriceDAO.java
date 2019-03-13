@@ -27,5 +27,9 @@ public class PriceDAO extends AbstractDAO{
 	public void insertpricecontent_rest(Map<String, Object> map) {
 		insert("Price.insertpricecontent_rest", map);
 	}
+	
+	public String selectpriceday(String uid) {
+		return (String) selectOne("Price.selectpriceday", uid);
+	}
 
 }

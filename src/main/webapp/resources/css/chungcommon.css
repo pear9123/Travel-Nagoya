@@ -13,6 +13,14 @@
 		left:0px;
 		bottom:0px;
 		width: 100%;
+/* 		text-align: center; */
+		z-index: 999;
+	}
+	#fixedfooter_modal {
+		position:fixed;
+		left:0px;
+		bottom:0px;
+		width: 100%;
 		text-align: center;
 		z-index: 999;
 	}
@@ -20,28 +28,36 @@
 		background:#EAEAEA;
 		color: black;
 		width: 100%;
+		padding: 10px 15px 10px 15px;
+		display: inline-block;
+	}
+	.inner99 {
+		background:#EAEAEA;
+		color: black;
+		width: 100%;
 		padding: 15px;
 		display: inline-block;
+		height: 47px;
 	}
 	.rest {
 		background:#EAEAEA;
 		color: black;
 		width: 100%;
-		padding: 15px;
+		padding: 0px 15px 10px 15px;
 		display: inline-block;
 	}
 	.trans {
 		background:#EAEAEA;
 		color: black;
 		width: 100%;
-		padding: 15px;
+		padding: 0px 15px 10px 15px;
 		display: inline-block;
 	}
 	.etc {
 		background:#EAEAEA;
 		color: black;
 		width: 100%;
-		padding: 15px;
+		padding: 0px 15px 10px 15px;
 		display: inline-block;
 	}
 	._1OAG72_XBn {

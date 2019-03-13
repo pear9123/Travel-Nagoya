@@ -16,4 +16,7 @@ public interface PriceService {
 	
 	// PriceContentrest - INSERT
 	public void insertpricecontent_rest(Map<String, Object> map) throws Exception;
+	
+	// PriceMainDay - SELECT
+	String selectpriceday(String uid) throws Exception;
 }
