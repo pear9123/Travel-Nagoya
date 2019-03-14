@@ -58,4 +58,27 @@
 		WHERE
 			pid = #{uid}
 	</select>
+	
+	<update id="updatepricecontent" parameterType="HashMap">
+		UPDATE 
+			pricecontent
+		SET
+			<choose>
+				<when test='modify_flag == "rest" or modify_flag == "etc"'>
+					state = #{modify_state}, price = #{modify_price}, checked = #{modify_select_box}
+				</when>
+				<otherwise>
+					person_cnt = #{modify_cnt}, person_price = #{modify_price}, checked = #{modify_select_box}
+				</otherwise>
+			</choose>
+		WHERE
+			pid = #{modify_uid}
+	</update>
+	
+	<delete id="deletecontent" parameterType="String">
+		DELETE FROM
+			pricecontent
+		WHERE
+			pid = #{pid}
+	</delete>
 </mapper>

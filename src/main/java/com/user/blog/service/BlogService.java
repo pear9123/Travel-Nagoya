@@ -32,4 +32,6 @@ public interface BlogService {
 	// BlogReplyCount - SELECT
 	String selectreplycount(String uid) throws Exception;
 	
+	// BlogMainImage - UPDATE
+	public void updatemainimage(Map<String, Object> map) throws Exception;
 }

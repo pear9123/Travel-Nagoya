@@ -5,7 +5,7 @@ import java.util.Map;
 public interface BlogAdminService {
 	
 	// config 이미지 PATH - SELECT
-	String configimgpath() throws Exception;
+	public String configimgpath() throws Exception;
 	
 	// BlogImage - INSERT
 	public void InsertImage(Map<String, String> map) throws Exception;

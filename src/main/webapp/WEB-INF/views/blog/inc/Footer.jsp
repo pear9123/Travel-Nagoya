@@ -49,8 +49,15 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Image Change</button>
+	        <button type="button" class="btn btn-primary" id="MainImageChange">Image Change</button>
 	      </div>
+	      <form action="/BlogMainImageUpdate.do" method="post" enctype="multipart/form-data">
+	      	<div class="modal-footer" id="ImageChangeDiv" style="display: none;">
+	      		<input type="hidden" name="EMAIL" value="${map.EMAIL }">
+	      		<input type="file" name="file" class="form-control-file">
+	      		<button type="submit" class="btn btn-primary mb-2">저장</button>
+	      	</div>
+	      </form>
 	    </div>
 	  </div>
 	</div>

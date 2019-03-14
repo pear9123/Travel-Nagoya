@@ -51,4 +51,8 @@ public class BlogDAO extends AbstractDAO{
 	public String selectreplycount(String uid) throws Exception {
 		return (String) selectOne("Blog.selectreplycount", uid);
 	}
+
+	public void updatemainimage(Map<String, Object> map) throws Exception {
+		update("Blog.updatemainimage", map);
+	}
 }

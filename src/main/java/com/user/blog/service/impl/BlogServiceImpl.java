@@ -52,4 +52,8 @@ public class BlogServiceImpl implements BlogService {
 		return BlogDAO.selectreplycount(uid);
 	}
 	
+	public void updatemainimage(Map<String, Object> map) throws Exception {
+		BlogDAO.updatemainimage(map);
+	}
+	
 }

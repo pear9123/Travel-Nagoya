@@ -88,4 +88,14 @@
 			uid = #{uid}
 	</select>
 	
+	<update id="updatemainimage" parameterType="HashMap">
+		UPDATE 
+			user
+		SET
+			IMG = #{IMG}
+		WHERE
+			EMAIL = #{EMAIL}
+			
+	</update>
+	
 </mapper>

@@ -4,7 +4,21 @@
 <%@ page session="false" %>
 
 <jsp:include page="/WEB-INF/views/blog/inc/Header.jsp"/>
-
+<script>
+	$(document).ready(function(){
+		var cnt = 2;
+		$('#MainImageChange').click(function(){
+			cnt = cnt + 1 ;
+			console.log('click');
+			if((cnt%2) == 1){
+				$('#ImageChangeDiv').show();
+			} else {
+				$('#ImageChangeDiv').hide();
+			}
+			
+		});
+	});
+</script>
     <!-- Our Team
     ================================================== -->
 	<section id="nino-ourTeam">

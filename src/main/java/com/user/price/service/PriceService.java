@@ -19,4 +19,10 @@ public interface PriceService {
 	
 	// PriceMainDay - SELECT
 	String selectpriceday(String uid) throws Exception;
+	
+	// PriceContent - UPDATE
+	public void updatepricecontent(Map<String, Object> map) throws Exception; 
+	
+	// PriceDelete - DELETE
+	public void deletecontent(String pid) throws Exception;
 }

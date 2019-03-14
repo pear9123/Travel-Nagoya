@@ -90,17 +90,47 @@
 			$('#result_pri').html(result_pri);
 		});
 		
-// 		$("#modifymodal").click(function(){
-// 			var num = $(this).attr('value');
-// 			console.log(num);
-// 		});
-		
-		
 	});
+
+	function modalshow(uid,flag,price,state,checked,person_cnt,person_price){
+		$('#modify_select_box').find("option").remove();
+		$('#modify_price').find("input").remove();
+		$('#trans_cnt').find("input").remove();
+		console.log(uid+"/"+flag+"/"+price+"/"+state+"/"+checked+"/"+person_cnt+"/"+person_price);
+		$('#modify_uid').val(uid);
+		$('#modify_flag').val(flag);
+		if(flag == 'rest'){
+			$('#modify_price').val(price);
+			$('#modify_state').val(state);
+			$('#modify_select_box').append("<option value='0'>아침</option>").append("<option value='1'>점심</option>").append("<option value='2'>저녁</option>");
+			$('#modify_select_box').val(checked);
+			
+		} else if(flag == 'trans'){
+			$('#modify_select_box').append("<option value='0'>버스</option>").append("<option value='1'>지하철</option>").append("<option value='2'>기타</option>");
+			$('#trans_cnt').append("<input type='text' name='modify_cnt' id='modify_cnt' class='form-control' placeholder='인원수' >");
+			$('#modify_price').val(person_price);
+			$('#modify_state').val(state);
+			$('#modify_cnt').val(person_cnt);
+			$('#modify_select_box').val(checked);
+		} else if(flag == 'etc'){
+			$('#modify_select_box').append("<option value='0'>주류</option>").append("<option value='1'>야식</option>").append("<option value='2'>기타</option>");
+			$('#modify_price').val(price);
+			$('#modify_state').val(state);
+			$('#modify_select_box').val(checked);
+		}
+		
+	}
 	
-	function modalshow(obj){
-		console.log(obj);
-		$('#recipient-name').val(obj);
+	function modify_form(){
+		$('#modify_form').submit();
+	}
+	
+	function modalshowdelete(pid){
+		$('#pricepid').val(pid);
+	}
+	
+	function deletecontent(){
+		$('#pricecontentdelete').submit();
 	}
 	</script>
 <!-- Happy Client
@@ -152,22 +182,28 @@
 									<span>
 									<c:choose>
 										<c:when test="${list.flag_chk == 'rest' }">
-											${list.state } / ${list.date } 
+											${list.state } / ${fn:substring(list.date,2,16) } 
 										</c:when>
 										<c:when test="${list.flag_chk == 'trans' }">
 											<c:choose>
 											<c:when test="${list.checked == '0' }">버스</c:when>
 											<c:when test="${list.checked == '1' }">지하철</c:when>
 											<c:when test="${list.checked == '2' }">기타</c:when>
-										 </c:choose> / ${list.date }
+										 </c:choose> / ${fn:substring(list.date,2,16) }
 										</c:when>
 										<c:when test="${list.flag_chk == 'etc' }">
-											${list.state } / ${list.date } 
+											${list.state } /  ${fn:substring(list.date,2,16) }
 										</c:when>
 									</c:choose>
 									</span>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="modalshow('${list.pid}')" id="modifymodal">dd</button>
-<!-- 									<button style="border: none;background-color: white;"><img alt="" src="/resources/images/price_modify.png" style="width: 20px;"></button> -->
+									<!-- 수정 버튼 -->
+									<button style="border: none;background-color: white;" data-toggle="modal" data-target="#ModifyPriceContent" onclick="modalshow('${list.pid}','${list.flag_chk }','${list.price }','${list.state }','${list.checked }','${list.person_cnt }','${list.person_price }')" id="modifymodal">
+										<img alt="" src="/resources/images/price_modify.png" style="width: 15px;">
+									</button>
+									<!-- 삭제 버튼 -->
+									<button style="border: none;background-color: white;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#DeletePriceContent" onclick="modalshowdelete('${list.pid}')">
+										<img alt="" src="/resources/images/price_delete.png" style="width: 15px;">
+									</button>
 								</div>
 							</div>
 						</div>
@@ -237,7 +273,8 @@
     	</div>
     </section><!--/#nino-happyClient-->
     
-   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- 수정 Modal -->   
+   <div class="modal fade" id="ModifyPriceContent" tabindex="-1" role="dialog" aria-labelledby="ModifyPriceContentLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -246,36 +283,60 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="/PriceContentModify.do" method="post" id="modify_form">
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">금액</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">장소</label>
-            <input type="text" class="form-control" id="state">
-          </div>
-          <div class="form-group">
-          	<select>
-          		<option>아침</option>
-          		<option>점심</option>
-          		<option>저녁</option>
-          	</select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+        		<input type="hidden" name="uid" id="uid" value="${uid }">
+        		<input type="hidden" name="modify_uid" id="modify_uid">
+        		<input type="hidden" name="modify_flag" id="modify_flag">
+	        	<div class="form-group">
+	            	<label for="recipient-name" class="col-form-label">금액</label>
+	            	<input type="text" class="form-control" id="modify_price" name="modify_price">
+	          	</div>
+	          	<div class="form-group">
+	            	<label for="recipient-name" class="col-form-label">장소</label>
+	            	<input type="text" class="form-control" id="modify_state" name="modify_state">
+	          	</div>
+	          	<div id="trans_cnt" class="form-group">
+	          	</div>
+	          	<div class="form-group">
+	          		<select name="modify_select_box" id="modify_select_box">
+	          		</select>
+	          	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-primary" onclick="modify_form()">수정</button>
+	      </div>
+      </form>
     </div>
   </div>
 </div>
 
     
-   
-	
+<!-- 삭제 Modal -->
+<form name="pricecontentdelete" id="pricecontentdelete" action="/PriceContentDelete.do" method="post">
+<div class="modal fade" id="DeletePriceContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        정말로 삭제하시겠습니까?
+      </div>
+      <div class="modal-footer">
+      	<input type="hidden" name="pid" id="pricepid" >
+      	<input type="hidden" name="uid" value="${uid }">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" onclick="deletecontent()">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>   
+</form>	
 
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

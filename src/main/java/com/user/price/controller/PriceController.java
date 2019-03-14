@@ -84,4 +84,37 @@ public class PriceController {
 		redirect.addFlashAttribute("uid", map.get("uid"));
 		return "redirect:/PriceContent.do";
 	}
+	
+	@RequestMapping("/PriceContentModify.do")
+	public String PriceContentModify(@RequestParam HashMap<String, Object> map, RedirectAttributes redirect) throws Exception {
+		//PARAM == modify_select_box, modify_uid, modify_flag, modify_price, modify_state, modify_cnt
+		System.out.println("=============modify_uid===========" + map.get("modify_uid"));
+		System.out.println("=============modify_flag===========" + map.get("modify_flag"));
+		System.out.println("=============uid===========" + map.get("uid"));
+		String flag = (String)map.get("modify_flag");
+		if(flag.equals("rest") || flag.equals("etc")) {
+			map.put("modify.cnt",0);
+		} else if(flag.equals("trans")) {
+			map.put("modify_state","nstate");
+			int modify_price = Integer.parseInt((String) map.get("modify_price"));
+			int modify_cnt   = Integer.parseInt((String) map.get("modify_cnt"));
+			int person_price = modify_price / modify_cnt;
+			map.put("person_price",person_price);
+		}
+		
+		PRICESERVICE.updatepricecontent(map);
+		redirect.addFlashAttribute("uid", map.get("uid"));
+		
+		return "redirect:/PriceContent.do";
+	}
+	
+	@RequestMapping("/PriceContentDelete.do")
+	public String PriceContentDelete(HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+		String pid = request.getParameter("pid");
+		String uid = request.getParameter("uid");
+		PRICESERVICE.deletecontent(pid);
+		
+		redirect.addFlashAttribute("uid", uid);
+		return "redirect:/PriceContent.do";
+	}
 }

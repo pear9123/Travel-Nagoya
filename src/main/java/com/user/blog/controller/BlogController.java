@@ -1,17 +1,23 @@
 package com.user.blog.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.user.admin.service.BlogAdminService;
 import com.user.blog.service.BlogService;
 
 
@@ -20,6 +26,8 @@ public class BlogController {
 	
 	@Autowired
 	private BlogService BLOGSERVICE;
+	@Autowired
+	private BlogAdminService BLOGADMINSERVICE;
 	
 	/* BLOG LIST MAIN */
 	@RequestMapping(value = "/BlogMain.do")
@@ -105,6 +113,45 @@ public class BlogController {
 		BLOGSERVICE.insertreply(map);
 		
 		return "redirect:/BlogReply.do";
+	}
+	
+	/* BLOG MAIN IMAGE UPDATE */
+	@RequestMapping("/BlogMainImageUpdate.do")
+	public String BlogMainImageUpdate(MultipartHttpServletRequest mtfRequest, HttpSession session, HttpServletRequest request ) throws Exception {
+		
+		MultipartFile fileList = mtfRequest.getFile("file");
+		String email = request.getParameter("EMAIL");
+        long CurrentTime_temp = System.currentTimeMillis(); // Name 동기화
+        String CurrentTime = String.valueOf(CurrentTime_temp);
+        
+        // CONFIG PATH
+        String path = BLOGADMINSERVICE.configimgpath();
+        
+        // BLOG CONTENT INSERT
+        Map<String, Object> ContentMap = new HashMap();
+        String IMG = path +""+CurrentTime+""+ fileList.getOriginalFilename();
+        ContentMap.put("EMAIL", email);
+        ContentMap.put("IMG", IMG);
+        BLOGSERVICE.updatemainimage(ContentMap);
+        
+
+        String originFileName = fileList.getOriginalFilename(); // 원본 파일 명
+        String fileSize = String.valueOf(fileList.getSize()); // 파일 사이즈
+        String dbsavefile = CurrentTime +""+ originFileName;
+        
+        String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+        System.out.println("safeFile : "+safeFile);
+            
+	        try {
+	        	fileList.transferTo(new File(safeFile));
+	        } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+        
+        
+		return "redirect:/BlogMain.do";
 	}
 
 }

@@ -105,12 +105,12 @@
 					<div class="nino-menuItem pull-right">
 						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="#nino-header">Home <span class="sr-only">(current)</span></a></li>
+								<li class="active"><a href="#" onclick="url('blog');">Home <span class="sr-only">(current)</span></a></li>
 <!-- 								<li><a href="#nino-story">About</a></li> -->
 <!-- 								<li><a href="#nino-services">Service</a></li> -->
-								<li><a href="#nino-ourTeam">Our Team</a></li>
+<!-- 								<li><a href="#nino-ourTeam">Our Team</a></li> -->
 <!-- 								<li><a href="#nino-portfolio">Work</a></li> -->
-								<li><a href="#nino-latestBlog">Blog</a></li>
+								<li><a href="#" onclick="url('blog');">Blog</a></li>
 								<li><a href="#" onclick="url('price');">Price</a></li>
 								<li><a href="#" onclick="logout();">Logout</a></li>
 							</ul>

@@ -31,5 +31,13 @@ public class PriceDAO extends AbstractDAO{
 	public String selectpriceday(String uid) {
 		return (String) selectOne("Price.selectpriceday", uid);
 	}
+	
+	public void updatepricecontent(Map<String, Object> map) {
+		update("Price.updatepricecontent", map);
+	}
+	
+	public void deletecontent(String pid) {
+		delete("Price.deletecontent", pid);
+	}
 
 }

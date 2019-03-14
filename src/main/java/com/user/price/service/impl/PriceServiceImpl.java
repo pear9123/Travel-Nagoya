@@ -34,4 +34,12 @@ public class PriceServiceImpl implements PriceService {
 	public String selectpriceday(String uid) throws Exception {
 		return priceDAO.selectpriceday(uid);
 	}
+	
+	public void updatepricecontent(Map<String, Object> map) throws Exception {
+		priceDAO.updatepricecontent(map);
+	}
+	
+	public void deletecontent(String pid) throws Exception {
+		priceDAO.deletecontent(pid);
+	}
 }
