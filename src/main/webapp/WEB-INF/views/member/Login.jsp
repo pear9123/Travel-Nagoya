@@ -105,7 +105,7 @@ $(document).ready(function(){
                   
                   <form role="form" method="post" action="j_spring_security_check" class="user">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="j_username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required="required">
+                      <input type="text" class="form-control form-control-user" name="j_username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="ID" required="required">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" name="j_password" id="exampleInputPassword" placeholder="Password" required="required">
@@ -118,12 +118,12 @@ $(document).ready(function(){
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    <a href="/Join.do" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Join
                     </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+<!--                     <a href="index.html" class="btn btn-facebook btn-user btn-block"> -->
+<!--                       <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook -->
+<!--                     </a> -->
                   </form>
                   
                   
@@ -131,9 +131,9 @@ $(document).ready(function(){
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
+<!--                   <div class="text-center"> -->
+<!--                     <a class="small" href="register.html">Create an Account!</a> -->
+<!--                   </div> -->
                 </div>
               </div>
             </div>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	
+	<insert id="insertjointemp" parameterType="HashMap">
+		INSERT INTO
+			user
+			(EMAIL, PASSWD, NAME, ENG_NAME, ENABLED, AUTHORITY, MAIL, CERT_KEY)
+			VALUES
+			(#{input_id}, #{input_password_result}, #{input_kor_name}, #{eng_name}, #{input_enabled}, #{input_authority}, #{input_email}, #{input_random} )
+	</insert>
+	
+	<select id="selecttempmember" parameterType="String" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			user
+		WHERE
+			CERT_KEY = #{cert_key}
+	</select>
+	
+	<update id="updatetruemember" parameterType="String">
+		UPDATE 
+			user
+		SET
+			ENABLED = 1, AUTHORITY = 'ROLE_USER'
+		WHERE
+			EMAIL = #{id}
+	</update>
+	
+</mapper>
