@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.user.admin.service.BlogAdminService;
 import com.user.blog.service.BlogService;
@@ -31,7 +33,7 @@ public class BlogController {
 	
 	/* BLOG LIST MAIN */
 	@RequestMapping(value = "/BlogMain.do")
-	public String BlogMain(Model model, Principal principal) throws Exception {
+	public String BlogMain(Model model, Principal principal, HttpServletRequest request) throws Exception {
 		System.out.println("=============== BLOG LIST MAIN ===============");
 		
 		// SECURITY INFO
@@ -50,6 +52,15 @@ public class BlogController {
 		// BLOG CONTENTS LIST
 		List<Map<String, Object>> Listmap = BLOGSERVICE.selectbloglist();
 		model.addAttribute("list", Listmap);
+		
+		// BLOG SEARCH
+		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+		if(flashMap != null) {
+			int searchpid = (Integer)flashMap.get("searchpid");
+			model.addAttribute("search_pid", searchpid);
+		} else {
+			model.addAttribute("search_pid", "nodate");
+		}
 		
 		return "blog/main";
 	}
@@ -151,6 +162,17 @@ public class BlogController {
 	        }
         
         
+		return "redirect:/BlogMain.do";
+	}
+	
+	/* BLOG CONTENT SEARCH */
+	@RequestMapping("/BlogContentSearch.do")
+	public String BlogContentSearch(HttpServletRequest request, RedirectAttributes redirect) throws Exception{
+		String title = request.getParameter("title");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map = BLOGSERVICE.blogcontentsearch(title);
+		int pid = (Integer)map.get("pid");
+		redirect.addFlashAttribute("searchpid", pid);
 		return "redirect:/BlogMain.do";
 	}
 

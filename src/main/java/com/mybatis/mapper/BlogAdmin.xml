@@ -31,4 +31,11 @@
 	
 	</insert>
 	
+	<delete id="deletecontent" parameterType="String">
+		DELETE FROM
+			blogcontent
+		WHERE
+			pid = #{pid}
+	</delete>
+	
 </mapper>

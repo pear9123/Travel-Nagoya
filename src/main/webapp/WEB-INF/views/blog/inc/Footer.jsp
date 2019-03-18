@@ -31,8 +31,8 @@
 
     <!-- Search Form - Display when click magnify icon in menu
     ================================================== -->
-    <form action="" id="nino-searchForm">
-    	<input type="text" placeholder="Search..." class="form-control nino-searchInput">
+    <form action="/BlogContentSearch.do" id="nino-searchForm">
+    	<input type="text" placeholder="Title Search..." class="form-control nino-searchInput" name="title">
     	<i class="mdi mdi-close nino-close"></i>
     </form><!--/#nino-searchForm-->
 	

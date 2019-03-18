@@ -55,4 +55,9 @@ public class BlogDAO extends AbstractDAO{
 	public void updatemainimage(Map<String, Object> map) throws Exception {
 		update("Blog.updatemainimage", map);
 	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> blogcontentsearch(String title) throws Exception {
+		return (Map<String, Object>) selectOne("Blog.blogcontentsearch", title);
+	}
 }

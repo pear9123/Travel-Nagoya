@@ -15,4 +15,7 @@ public interface BlogAdminService {
 	
 	// BlogNotice - INSERT
 	public void insertnotice(Map<String, Object> map) throws Exception;
+	
+	// BlogContentDelete - DELETE
+	public void deletecontent(String pid) throws Exception;
 }

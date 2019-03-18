@@ -72,10 +72,12 @@
 	
 	function url(obj){
 		console.log(obj);
-		if(obj == 'pricecreate'){
-			document.location.href = "/PriceCreateProc.do";
-		} else if(obj == 'price'){
+		if(obj == 'price'){
 			document.location.href = "/Price.do";
+		} else if(obj == 'blog'){
+			document.location.href = "/BlogMain.do";
+		} else if(obj == 'navi'){
+			document.location.href = "/TravelNaviView.do";
 		}
 		
 	}
@@ -112,17 +114,16 @@
 <!-- 								<li><a href="#nino-portfolio">Work</a></li> -->
 								<li><a href="#" onclick="url('blog');">Blog</a></li>
 								<li><a href="#" onclick="url('price');">Price</a></li>
+								<li><a href="#" onclick="url('navi');">Location</a></li>
 								<li><a href="#" onclick="logout();">Logout</a></li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
 						<ul class="nino-iconsGroup nav navbar-nav">
-							<li><a href="#"><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
+							<li><a href="#" onclick="url('price');"><i class="mdi mdi-cart-outline nino-icon"></i></a></li>
 							<li><a href="#" class="nino-search"><i class="mdi mdi-magnify nino-icon"></i></a></li>
 						</ul>
 					</div>
 				</div><!-- /.container-fluid -->
 			</nav>
-
-			
 		</div>
 	</header><!--/#header-->

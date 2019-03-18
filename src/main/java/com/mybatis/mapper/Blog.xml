@@ -95,7 +95,15 @@
 			IMG = #{IMG}
 		WHERE
 			EMAIL = #{EMAIL}
-			
 	</update>
+	
+	<select id="blogcontentsearch" parameterType="String" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			blogcontent
+		WHERE
+			title like CONCAT('%',#{title},'%') limit 0,1
+	</select>
 	
 </mapper>

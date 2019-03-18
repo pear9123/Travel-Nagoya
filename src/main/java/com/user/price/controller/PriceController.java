@@ -23,7 +23,6 @@ public class PriceController {
 	
 	@Autowired
 	private PriceService PRICESERVICE;
-	private BlogService BLOGSERVICE;
 	
 	@RequestMapping("/PriceCreate.do")
 	public String PriceCreate(HttpServletRequest request) throws Exception{

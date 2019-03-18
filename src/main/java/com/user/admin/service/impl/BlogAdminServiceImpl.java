@@ -33,4 +33,9 @@ public class BlogAdminServiceImpl implements BlogAdminService{
 		BlogAdminDAO.insertnotice(map);
 	}
 	
+	// BlogContentDelete - DELETE
+	public void deletecontent(String pid) throws Exception {
+		BlogAdminDAO.deletecontent(pid);
+	}
+	
 }

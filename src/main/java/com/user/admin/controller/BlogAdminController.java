@@ -14,11 +14,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.user.admin.service.BlogAdminService;
+import com.user.blog.service.BlogService;
 
 @Controller
 public class BlogAdminController {
@@ -27,7 +29,8 @@ public class BlogAdminController {
 	// 의존 주입
 	@Autowired
 	private BlogAdminService BLOGADMINSERVICE;
-	
+	@Autowired
+	private BlogService BLOGSERVICE;
 	
 
 	@RequestMapping("/AdminBlog.do")
@@ -120,5 +123,22 @@ public class BlogAdminController {
 		BLOGADMINSERVICE.insertnotice(map);
 		
 		return "admin/AdminBlog";
+	}
+	
+	// AdminContentList
+	@RequestMapping("/AdminContentList.do")
+	public String AdminContentList(Model model) throws Exception{
+		// BLOG CONTENTS LIST
+		List<Map<String, Object>> Listmap = BLOGSERVICE.selectbloglist();
+		model.addAttribute("list", Listmap);
+		return "admin/AdminContentList";
+	}
+	
+	// AdminConteDelete
+	@RequestMapping("/AdminContentDelete.do")
+	public String AdminContentDelete(HttpServletRequest request) throws Exception {
+		String pid = request.getParameter("delete_pid");
+		BLOGADMINSERVICE.deletecontent(pid);
+		return "redirect:/AdminContentList.do";
 	}
 }

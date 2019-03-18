@@ -14,7 +14,7 @@
 
   <!-- Custom styles for this template-->
   <link href="/resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 function setCookie (name, value, expires) {
     document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
@@ -80,6 +80,26 @@ $(document).ready(function(){
         }
     });
 });
+
+function forgotpw(){
+	alert("관리자에게 문의하세요");
+}
+
+//<![CDATA[
+// 사용할 앱의 JavaScript 키를 설정해 주세요.
+Kakao.init('e649516b2c829c7966b88c0a9437a5f7');
+function loginWithKakao() {
+    // 로그인 창을 띄웁니다.
+    Kakao.Auth.login({
+      success: function(authObj) {
+        alert(JSON.stringify(authObj));
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+  };
+//]]>
 </script>
 
 </head>
@@ -121,15 +141,12 @@ $(document).ready(function(){
                     <a href="/Join.do" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Join
                     </a>
-<!--                     <a href="index.html" class="btn btn-facebook btn-user btn-block"> -->
-<!--                       <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook -->
-<!--                     </a> -->
                   </form>
                   
                   
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" onclick="forgotpw()">Forgot Password?</a>
                   </div>
 <!--                   <div class="text-center"> -->
 <!--                     <a class="small" href="register.html">Create an Account!</a> -->
@@ -139,11 +156,8 @@ $(document).ready(function(){
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 
   <!-- Bootstrap core JavaScript-->

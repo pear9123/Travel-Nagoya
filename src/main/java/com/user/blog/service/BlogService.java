@@ -34,4 +34,7 @@ public interface BlogService {
 	
 	// BlogMainImage - UPDATE
 	public void updatemainimage(Map<String, Object> map) throws Exception;
+	
+	// BlogContentSearch - SELECT
+	public Map<String, Object> blogcontentsearch(String title) throws Exception;
 }

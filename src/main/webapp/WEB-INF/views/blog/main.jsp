@@ -17,12 +17,21 @@
 			}
 			
 		});
+		
+		var searchpid = $('#search_pid').val();
+		if(searchpid == "nodate"){
+			console.log(searchpid);
+		} else {
+			console.log(searchpid);
+			window.location.href = "#content_solt"+searchpid;
+		}
 	});
 </script>
     <!-- Our Team
     ================================================== -->
 	<section id="nino-ourTeam">
 		<div class="container">
+			<input type="hidden" id="search_pid" value="${search_pid }">
 			<h2 class="nino-sectionHeading">
 				<span class="nino-subHeading">${map.ENG_NAME }</span>
 			</h2>
@@ -80,7 +89,7 @@
 				<div class="row">
 				
 					<c:forEach var="list" items="${list }">
-						<div class="col-md-4 col-sm-4">
+						<div class="col-md-4 col-sm-4" id="content_solt${list.pid }">
 							<article>
 								<div class="articleThumb" >
 									<a href="/BlogDetail.do?pid=${list.pid }"><img src="${list.thumbnail }" alt="" style="height: 380px; width: 285px; object-fit: cover;"></a>

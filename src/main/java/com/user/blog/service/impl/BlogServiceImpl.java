@@ -56,4 +56,7 @@ public class BlogServiceImpl implements BlogService {
 		BlogDAO.updatemainimage(map);
 	}
 	
+	public Map<String, Object> blogcontentsearch(String title) throws Exception {
+		return BlogDAO.blogcontentsearch(title);
+	}
 }

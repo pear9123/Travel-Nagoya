@@ -24,4 +24,8 @@ public class BlogAdminDAO extends AbstractDAO{
 	public void insertnotice(Map<String, Object> map) throws Exception{
 		insert("BlogAdmin.insertnotice", map);
 	}
+
+	public void deletecontent(String pid) throws Exception {
+		delete("BlogAdmin.deletecontent", pid);
+	}
 }

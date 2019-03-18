@@ -73,6 +73,7 @@
             <a class="collapse-item" href="404.html">404 Page</a>
             <a class="collapse-item" href="blank.html">Blank Page</a>
             <a class="collapse-item" href="AdminNotice.do">공지사항</a>
+            <a class="collapse-item" href="AdminContentList.do">컨텐츠업로드</a>
             <a class="collapse-item" href="AdminImgUpload.do">사진올리기</a>
           </div>
         </div>
