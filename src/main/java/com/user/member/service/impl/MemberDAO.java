@@ -21,5 +21,9 @@ public class MemberDAO extends AbstractDAO{
 	public void updatetruemember(String id) {
 		update("Member.updatetruemember", id);
 	}
+	
+	public void insertlog(Map<String, Object> map) {
+		insert("Member.insertlog", map);
+	}
 
 }

@@ -28,4 +28,12 @@
 			EMAIL = #{id}
 	</update>
 	
+	<insert id="insertlog" parameterType="HashMap">
+		INSERT INTO
+			userconlog
+			(userid, userip, condate)
+			VALUSE
+			(#{userid}, #{userip}, now())
+		
+	</insert>
 </mapper>

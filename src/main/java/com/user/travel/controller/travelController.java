@@ -36,14 +36,19 @@ public class travelController {
 		String isend = request.getParameter("isend");
 		List<Map<String,Object>> map = kapi.KakaoRestAPI(isend);
 		model.addAttribute("items", map);
+		model.addAttribute("isend", isend);
 		return "travel/TravelNavi";
 	}
 	
 	@RequestMapping("/TravelNaviKeyword.do")
 	public String TravelNaviKeyword(@RequestParam HashMap<String, Object> map, Model model ) {
-		
 		List<Map<String,Object>> keymap = kapi.KakaoRestAPI_Keyword(map);
 		model.addAttribute("keyitems", keymap);
+		model.addAttribute("isend", map.get("isend"));
+		model.addAttribute("last_result", map.get("last_result"));
+		model.addAttribute("pin_x_maker", map.get("x_position"));
+		model.addAttribute("pin_y_maker", map.get("y_position"));
+		model.addAttribute("pin_radius", map.get("radius"));
 		return "travel/TravelNavi";
 	}
 

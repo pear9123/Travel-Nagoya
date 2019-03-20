@@ -24,5 +24,9 @@ public class MemberServiceimpl implements MemberService {
 	public void updatetruemember(String id) throws Exception {
 		MemberDAO.updatetruemember(id);
 	}
+	
+	public void insertlog(Map<String, Object> map) throws Exception {
+		MemberDAO.insertlog(map);
+	}
 
 }
