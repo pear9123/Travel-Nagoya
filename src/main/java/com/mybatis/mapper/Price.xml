@@ -19,7 +19,8 @@
 	<select id="selectpricecontent" parameterType="String" resultType="HashMap">
 		SELECT
 			*,(select a.IMG from user a where a.NAME = p.name) IMG,
-			  (select substring(date,1,11) from pricemain m where m.pid = p.uid) DAY
+			  (select substring(date,1,11) from pricemain m where m.pid = p.uid) DAY,
+			  (p.person_cnt * p.person_price) transsum
 		FROM
 			pricecontent p
 		WHERE

@@ -1,5 +1,6 @@
 package com.user.admin.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,14 @@ public class BlogAdminDAO extends AbstractDAO{
 
 	public void deletecontent(String pid) throws Exception {
 		delete("BlogAdmin.deletecontent", pid);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectnotice() throws Exception {
+		return selectList("BlogAdmin.selectnotice");
+	}
+
+	public void deletenotice(String uid) throws Exception {
+		delete("BlogAdmin.deletenotice", uid);
 	}
 }

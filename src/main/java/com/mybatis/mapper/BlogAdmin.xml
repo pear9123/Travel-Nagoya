@@ -37,5 +37,18 @@
 		WHERE
 			pid = #{pid}
 	</delete>
+
+	<select id="selectnotice" parameterType="HashMap" resultType="HashMap">
+		SELECT
+			*
+		FROM
+			blognotice
+	</select>	
 	
+	<delete id="deletenotice" parameterType="String">
+		DELETE FROM
+			blognotice
+		WHERE
+			uid = #{uid}
+	</delete>
 </mapper>

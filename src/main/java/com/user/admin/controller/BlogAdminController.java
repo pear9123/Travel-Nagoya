@@ -75,9 +75,10 @@ public class BlogAdminController {
            
             
             String dbsavefile = CurrentTime +""+ originFileName;
-//            String safeFile = path + System.currentTimeMillis() + originFileName;
-//            String safeFile1 = session.getServletContext().getRealPath("/");
-            String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+            // 로컬 주소
+//          String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+            // 서버 주소
+            String safeFile = "/pear9123/tomcat/webapps/ROOT/resources/file/"+dbsavefile;
             System.out.println("safeFile : "+safeFile);
             
             map.put("path",path);
@@ -106,7 +107,9 @@ public class BlogAdminController {
 	
 	// AdminNotice view 
 	@RequestMapping("/AdminNotice.do")
-	public String AdminNotice() {
+	public String AdminNotice(Model model) throws Exception{
+		List<Map<String, Object>> list = BLOGADMINSERVICE.selectnotice();
+		model.addAttribute("list", list);
 		return "admin/AdminNotice";
 	}
 	
@@ -123,6 +126,14 @@ public class BlogAdminController {
 		BLOGADMINSERVICE.insertnotice(map);
 		
 		return "admin/AdminBlog";
+	}
+	
+	// AdminNoticeDelete
+	@RequestMapping("/AdminNoticeDelete.do")
+	public String AdminNoticeDelete(HttpServletRequest request) throws Exception{
+		String uid = request.getParameter("delete_uid");
+		BLOGADMINSERVICE.deletenotice(uid);
+		return "redirect:/AdminNotice.do";
 	}
 	
 	// AdminContentList

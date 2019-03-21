@@ -22,14 +22,14 @@
 		var sum = $("#sum_value").val();
 		$("#sum_result_pay").html(sum);
 		
-		var tpc = $("#trans_person_cnt").text();
-		var tpp = $("#trans_person_price").text();
-		tpc = tpc * 1;
-		tpp = tpp * 1;
-		console.log(tpc);
-		console.log(tpp);
-		var tsp = tpc * tpp;
-		$("#trans_sum_pay").html(tsp);		
+// 		var tpc = $("#trans_person_cnt").text();
+// 		var tpp = $("#trans_person_price").text();
+// 		tpc = tpc * 1;
+// 		tpp = tpp * 1;
+// 		console.log(tpc);
+// 		console.log(tpp);
+// 		var tsp = tpc * tpp;
+// 		$("#trans_sum_pay").html(tsp);		
 		
 		$("#chk0").click(function(){
 	    	$(".rest").show();
@@ -154,7 +154,7 @@
 									<h4 class="name">
 										<c:choose>
 											<c:when test="${list.flag_chk == 'trans' }">
-												<span id="trans_sum_pay"></span> 원 -
+												<span id="trans_sum_pay">${list.transsum }</span> 원 -
 											</c:when>
 											<c:otherwise>
 												${list.price } 원 - 

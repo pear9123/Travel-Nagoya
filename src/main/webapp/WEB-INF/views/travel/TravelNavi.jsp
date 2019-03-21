@@ -26,7 +26,19 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e649516b2c829c7966b88c0a9437a5f7"></script>
 <style>
-    .box_div {border: 1px soile gray;}
+    .wrap {position: absolute;left: 0;bottom: 35px;width: 165px;height: 43px;margin-left: -82px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 12px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
 </style>
 
 
@@ -82,7 +94,7 @@ function url(obj){
 </script>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">BaeChungHan</a>
+      <a class="navbar-brand" onclick="url('blog');" href="#">ChungVee</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -293,8 +305,8 @@ if(last_result == 2){
 	    <c:forEach items="${keyitems}" var="item" >
 		    {
 		        title: '${item.place_name}',
-		        content: '<div class="box_div">${item.place_name}</div>',
-		        latlng: new daum.maps.LatLng(${item.y}, ${item.x})
+		        content: '<div class="wrap"><div class="info"><div class="title">${item.place_name}</div></div></div>',
+		        latlng: new daum.maps.LatLng(${item.y}, ${item.x}),
 		    },
 		</c:forEach>
 	];
@@ -332,6 +344,7 @@ if(last_result == 2){
 			circle.setMap(map);
 			
 		} else {
+			
 		    // 마커 이미지의 이미지 크기 입니다
 		    var imageSize = new daum.maps.Size(24, 35); 
 		    
@@ -343,11 +356,24 @@ if(last_result == 2){
 		        map: map, // 마커를 표시할 지도
 		        position: positions[i].latlng, // 마커를 표시할 위치
 		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		        content : positions[i].content,
+// 		        content : positions[i].content,
 		        image : markerImage // 마커 이미지 
 		    });
+		    var overlay = new daum.maps.CustomOverlay({
+		        content: positions[i].content,
+		        map: map,
+		        position: marker.getPosition()       
+		    });
 		    
+		 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+		    daum.maps.event.addListener(marker, 'click', function() {
+		        overlay.setMap(map);
+		    });
 		}
+	}
+	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	function closeOverlay() {
+	    overlay.setMap(null);     
 	}
 }
 

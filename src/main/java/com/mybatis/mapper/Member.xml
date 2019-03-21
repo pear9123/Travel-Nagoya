@@ -32,7 +32,7 @@
 		INSERT INTO
 			userconlog
 			(userid, userip, condate)
-			VALUSE
+			VALUES
 			(#{userid}, #{userip}, now())
 		
 	</insert>

@@ -37,22 +37,6 @@ $(document).ready(function(){
 							</article>
 						</div>
 					</c:forEach>
-<!-- 					<div class="col-md-12"> -->
-<!-- 						<article> -->
-<!-- 							<h5 class="articleTitle" style="font-size: 15px;"><a href="">1. 나고야여행 2일차</a></h5> -->
-<!-- 							<p class="articleDesc"> -->
-<!-- 							</p> -->
-<!-- 						</article> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-md-12"> -->
-<!-- 						<article> -->
-<!-- 							<h3 class="articleTitle" style="font-size: 15px;"><a href="">2. 나고야여행 1일차</a></h3> -->
-<!-- 							<p class="articleDesc"> -->
-<!-- 								Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. -->
-<!-- 							</p> -->
-<!-- 						</article> -->
-<!-- 					</div> -->
-					
 				</div>
 			</div>
     	</div>

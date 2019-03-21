@@ -150,7 +150,10 @@ public class BlogController {
         String fileSize = String.valueOf(fileList.getSize()); // 파일 사이즈
         String dbsavefile = CurrentTime +""+ originFileName;
         
-        String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+        // 로컬주소
+//        String safeFile = "D:\\STS\\contents\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Nagoya\\resources\\file\\"+dbsavefile;
+        // 서버주소
+        String safeFile = "/pear9123/tomcat/webapps/ROOT/resources/file/"+dbsavefile;
         System.out.println("safeFile : "+safeFile);
             
 	        try {

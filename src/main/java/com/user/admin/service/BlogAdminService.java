@@ -1,5 +1,6 @@
 package com.user.admin.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BlogAdminService {
@@ -18,4 +19,10 @@ public interface BlogAdminService {
 	
 	// BlogContentDelete - DELETE
 	public void deletecontent(String pid) throws Exception;
+	
+	// BlogNotice - SELECT
+	public List<Map<String, Object>> selectnotice() throws Exception;
+	
+	// BlogNoticeDelete - DELETE
+	public void deletenotice(String uid) throws Exception;
 }

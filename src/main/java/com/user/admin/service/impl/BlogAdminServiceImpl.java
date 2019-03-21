@@ -1,5 +1,6 @@
 package com.user.admin.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,13 @@ public class BlogAdminServiceImpl implements BlogAdminService{
 		BlogAdminDAO.deletecontent(pid);
 	}
 	
+	// BlogNotice - SELECT
+	public List<Map<String, Object>> selectnotice() throws Exception {
+		return BlogAdminDAO.selectnotice();
+	}
+	
+	// BlogDeleteNotice - DELETE
+	public void deletenotice(String uid) throws Exception {
+		BlogAdminDAO.deletenotice(uid);
+	}
 }
